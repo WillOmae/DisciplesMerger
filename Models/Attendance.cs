@@ -1,13 +1,12 @@
-﻿namespace DisciplesMerger.DAL
+﻿namespace DisciplesMerger.Models
 {
-    public class Relationships
+    public class Attendance
     {
         public string guid { get; set; }
         public string timestamp { get; set; }
         public string fk_churches_guid { get; set; }
         public string fk_names_guid { get; set; }
-        public string fk_names_guid2 { get; set; }
-        public string type { get; set; }
-        public string sort { get; set; }
+        public string fk_events_guid { get; set; }
+        public string fk_sessions_guid { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace DisciplesMerger.DAL
+﻿namespace DisciplesMerger.Models
 {
     public class Interests
     {
