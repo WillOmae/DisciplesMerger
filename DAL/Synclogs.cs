@@ -2,7 +2,6 @@
 {
     public class Synclogs
     {
-        public int id { get; set; }
         public string timestamp { get; set; }
         public string fk_churches_guid { get; set; }
         public string tablename { get; set; }

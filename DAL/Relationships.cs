@@ -2,7 +2,6 @@
 {
     public class Relationships
     {
-        public int id { get; set; }
         public string guid { get; set; }
         public string timestamp { get; set; }
         public string fk_churches_guid { get; set; }
