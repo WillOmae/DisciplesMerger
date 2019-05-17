@@ -5,7 +5,7 @@ namespace DisciplesMerger.Models
     public class Filters
     {
         public string guid { get; set; }
-        public string timestamp { get; set; }
+        public long timestamp { get; set; }
         public string fk_workers_guid { get; set; }
         public string name { get; set; }
         public string andor { get; set; }
@@ -31,7 +31,7 @@ namespace DisciplesMerger.Models
                     result.Add(new Filters()
                     {
                         guid = (string)row["guid"],
-                        timestamp = (string)row["timestamp"],
+                        timestamp = (long)row["timestamp"],
                         fk_workers_guid = (string)row["fk_workers_guid"],
                         name = (string)row["name"],
                         andor = (string)row["andor"],

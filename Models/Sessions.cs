@@ -5,7 +5,7 @@ namespace DisciplesMerger.Models
     public class Sessions
     {
         public string guid { get; set; }
-        public string timestamp { get; set; }
+        public long timestamp { get; set; }
         public string fk_churches_guid { get; set; }
         public string fk_events_guid { get; set; }
         public string night { get; set; }
@@ -36,7 +36,7 @@ namespace DisciplesMerger.Models
                     result.Add(new Sessions()
                     {
                         guid = (string)row["guid"],
-                        timestamp = (string)row["timestamp"],
+                        timestamp = (long)row["timestamp"],
                         fk_churches_guid = (string)row["fk_churches_guid"],
                         fk_events_guid = (string)row["fk_events_guid"],
                         night = (string)row["night"],

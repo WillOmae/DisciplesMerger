@@ -5,7 +5,7 @@ namespace DisciplesMerger.Models
     public class Metadata
     {
         public string guid { get; set; }
-        public string timestamp { get; set; }
+        public long timestamp { get; set; }
         public string version { get; set; }
         public string shared { get; set; }
         public string account_id { get; set; }
@@ -42,7 +42,7 @@ namespace DisciplesMerger.Models
                     result.Add(new Metadata()
                     {
                         guid = (string)row["guid"],
-                        timestamp = (string)row["timestamp"],
+                        timestamp = (long)row["timestamp"],
                         version = (string)row["version"],
                         shared = (string)row["shared"],
                         account_id = (string)row["account_id"],

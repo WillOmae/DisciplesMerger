@@ -4,7 +4,7 @@ namespace DisciplesMerger.Models
 {
     public class Synclogs
     {
-        public string timestamp { get; set; }
+        public long timestamp { get; set; }
         public string fk_churches_guid { get; set; }
         public string tablename { get; set; }
         public string fk_guid { get; set; }
@@ -26,7 +26,7 @@ namespace DisciplesMerger.Models
                 {
                     result.Add(new Synclogs()
                     {
-                        timestamp = (string)row["timestamp"],
+                        timestamp = (long)row["timestamp"],
                         fk_churches_guid = (string)row["fk_churches_guid"],
                         tablename = (string)row["tablename"],
                         fk_guid = (string)row["fk_guid"],

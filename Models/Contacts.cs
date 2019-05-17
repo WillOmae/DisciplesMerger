@@ -5,7 +5,7 @@ namespace DisciplesMerger.Models
     public class Contacts
     {
         public string guid { get; set; }
-        public string timestamp { get; set; }
+        public long timestamp { get; set; }
         public string fk_churches_guid { get; set; }
         public string fk_names_guid { get; set; }
         public string fk_workers_guid { get; set; }
@@ -36,7 +36,7 @@ namespace DisciplesMerger.Models
                     result.Add(new Contacts()
                     {
                         guid = (string)row["guid"],
-                        timestamp = (string)row["timestamp"],
+                        timestamp = (long)row["timestamp"],
                         fk_churches_guid = (string)row["fk_churches_guid"],
                         fk_names_guid = (string)row["fk_names_guid"],
                         fk_workers_guid = (string)row["fk_workers_guid"],
