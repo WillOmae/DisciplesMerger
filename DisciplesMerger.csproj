@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\Registrations.cs" />
     <Compile Include="DAL\Relationships.cs" />
     <Compile Include="DAL\Sessions.cs" />
     <Compile Include="DAL\Smallgroups.cs" />
