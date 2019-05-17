@@ -1,4 +1,6 @@
-﻿namespace DisciplesMerger.Models
+﻿using System.Collections.Generic;
+
+namespace DisciplesMerger.Models
 {
     public class Names
     {
@@ -51,5 +53,76 @@
         public string password { get; set; }
         public string permissions { get; set; }
         public string color { get; set; }
+
+
+        public static List<Names> Read(Database database)
+        {
+            List<Dictionary<string, object>> reader = database.Read(DB_Statements.READ_NAMES);
+            return BuildFromReader(reader);
+        }
+
+        private static List<Names> BuildFromReader(List<Dictionary<string, object>> rows)
+        {
+            List<Names> result = new List<Names>();
+            if (rows != null)
+            {
+                foreach (Dictionary<string, object> row in rows)
+                {
+                    result.Add(new Names()
+                    {
+                        guid = (string)row["guid"],
+                        timestamp = (string)row["timestamp"],
+                        fk_churches_guid = (string)row["fk_churches_guid"],
+                        fk_workers_guid = (string)row["fk_workers_guid"],
+                        fk_workers_guid2 = (string)row["fk_workers_guid2"],
+                        fk_smallgroups_guid = (string)row["fk_smallgroups_guid"],
+                        type = (string)row["type"],
+                        level = (string)row["level"],
+                        status = (string)row["status"],
+                        agegroup = (string)row["agegroup"],
+                        marital = (string)row["marital"],
+                        ethnicity = (string)row["ethnicity"],
+                        ethnicityother = (string)row["ethnicityother"],
+                        language = (string)row["language"],
+                        languageother = (string)row["languageother"],
+                        religion = (string)row["religion"],
+                        religionother = (string)row["religionother"],
+                        homechurch = (string)row["homechurch"],
+                        attendingchurch = (string)row["attendingchurch"],
+                        baptismdate = (string)row["baptismdate"],
+                        leadsource = (string)row["leadsource"],
+                        firstcontact = (string)row["firstcontact"],
+                        title = (string)row["title"],
+                        firstname = (string)row["firstname"],
+                        lastname = (string)row["lastname"],
+                        street = (string)row["street"],
+                        unit = (string)row["unit"],
+                        city = (string)row["city"],
+                        state = (string)row["state"],
+                        postal = (string)row["postal"],
+                        country = (string)row["country"],
+                        coordinates = (string)row["coordinates"],
+                        phone1 = (string)row["phone1"],
+                        phone1type = (string)row["phone1type"],
+                        phone2 = (string)row["phone2"],
+                        phone2type = (string)row["phone2type"],
+                        email = (string)row["email"],
+                        gender = (string)row["gender"],
+                        birthdate = (string)row["birthdate"],
+                        referrer = (string)row["referrer"],
+                        visitday = (string)row["visitday"],
+                        visittime = (string)row["visittime"],
+                        autoschedule = (string)row["autoschedule"],
+                        notes = (string)row["notes"],
+                        confidential = (string)row["confidential"],
+                        user = (string)row["user"],
+                        password = (string)row["password"],
+                        permissions = (string)row["permissions"],
+                        color = (string)row["color"],
+                    });
+                }
+            }
+            return result;
+        }
     }
 }

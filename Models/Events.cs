@@ -1,4 +1,6 @@
-﻿namespace DisciplesMerger.Models
+﻿using System.Collections.Generic;
+
+namespace DisciplesMerger.Models
 {
     public class Events
     {
@@ -22,5 +24,46 @@
         public string country { get; set; }
         public string coordinates { get; set; }
         public string notes { get; set; }
+
+        public static List<Events> Read(Database database)
+        {
+            List<Dictionary<string, object>> reader = database.Read(DB_Statements.READ_EVENTS);
+            return BuildFromReader(reader);
+        }
+
+        private static List<Events> BuildFromReader(List<Dictionary<string, object>> rows)
+        {
+            List<Events> result = new List<Events>();
+            if (rows != null)
+            {
+                foreach (Dictionary<string, object> row in rows)
+                {
+                    result.Add(new Events()
+                    {
+                        guid = (string)row["guid"],
+                        timestamp = (string)row["timestamp"],
+                        fk_churches_guid = (string)row["fk_churches_guid"],
+                        fk_workers_guid = (string)row["fk_workers_guid"],
+                        fk_workers_guid2 = (string)row["fk_workers_guid2"],
+                        type = (string)row["type"],
+                        title = (string)row["title"],
+                        abbreviation = (string)row["abbreviation"],
+                        color = (string)row["color"],
+                        description = (string)row["description"],
+                        date = (string)row["date"],
+                        presenter = (string)row["presenter"],
+                        venue = (string)row["venue"],
+                        street = (string)row["street"],
+                        city = (string)row["city"],
+                        state = (string)row["state"],
+                        postal = (string)row["postal"],
+                        country = (string)row["country"],
+                        coordinates = (string)row["coordinates"],
+                        notes = (string)row["notes"],
+                    });
+                }
+            }
+            return result;
+        }
     }
 }
