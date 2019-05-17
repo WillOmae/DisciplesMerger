@@ -13,15 +13,15 @@ namespace DisciplesMerger.Models
         public string sort { get; set; }
 
 
-        public static List<Relationships> Read(Database database)
+        public static HashSet<Relationships> Read(Database database)
         {
             List<Dictionary<string, object>> reader = database.Read(DB_Statements.READ_RELATIONSHIPS);
             return BuildFromReader(reader);
         }
 
-        private static List<Relationships> BuildFromReader(List<Dictionary<string, object>> rows)
+        private static HashSet<Relationships> BuildFromReader(List<Dictionary<string, object>> rows)
         {
-            List<Relationships> result = new List<Relationships>();
+            HashSet<Relationships> result = new HashSet<Relationships>();
             if (rows != null)
             {
                 foreach (Dictionary<string, object> row in rows)

@@ -26,15 +26,15 @@ namespace DisciplesMerger.Models
         public string notes { get; set; }
 
 
-        public static List<Metadata> Read(Database database)
+        public static HashSet<Metadata> Read(Database database)
         {
             List<Dictionary<string, object>> reader = database.Read(DB_Statements.READ_METADATA);
             return BuildFromReader(reader);
         }
 
-        private static List<Metadata> BuildFromReader(List<Dictionary<string, object>> rows)
+        private static HashSet<Metadata> BuildFromReader(List<Dictionary<string, object>> rows)
         {
-            List<Metadata> result = new List<Metadata>();
+            HashSet<Metadata> result = new HashSet<Metadata>();
             if (rows != null)
             {
                 foreach (Dictionary<string, object> row in rows)

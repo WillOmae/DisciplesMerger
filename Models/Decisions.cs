@@ -15,15 +15,15 @@ namespace DisciplesMerger.Models
         public string decisionother { get; set; }
         public string decisioncategory { get; set; }
 
-        public static List<Decisions> Read(Database database)
+        public static HashSet<Decisions> Read(Database database)
         {
             List<Dictionary<string, object>> reader = database.Read(DB_Statements.READ_DECISIONS);
             return BuildFromReader(reader);
         }
 
-        private static List<Decisions> BuildFromReader(List<Dictionary<string, object>> rows)
+        private static HashSet<Decisions> BuildFromReader(List<Dictionary<string, object>> rows)
         {
-            List<Decisions> result = new List<Decisions>();
+            HashSet<Decisions> result = new HashSet<Decisions>();
             if (rows != null)
             {
                 foreach (Dictionary<string, object> row in rows)
