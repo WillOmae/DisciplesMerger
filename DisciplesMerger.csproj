@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\Journalentries.cs" />
     <Compile Include="DAL\Metadata.cs" />
     <Compile Include="DAL\Names.cs" />
     <Compile Include="DAL\Registrations.cs" />
