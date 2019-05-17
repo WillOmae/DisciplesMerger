@@ -44,5 +44,34 @@ namespace DisciplesMerger.Models
             }
             return result;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Registrations registrations &&
+                   this.guid == registrations.guid &&
+                   this.timestamp == registrations.timestamp &&
+                   this.fk_churches_guid == registrations.fk_churches_guid &&
+                   this.fk_names_guid == registrations.fk_names_guid &&
+                   this.fk_events_guid == registrations.fk_events_guid &&
+                   this.fk_workers_guid == registrations.fk_workers_guid &&
+                   this.ticketnumber == registrations.ticketnumber &&
+                   this.advertising == registrations.advertising &&
+                   this.notes == registrations.notes;
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = -1671173987;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.guid);
+            hashCode = hashCode * -1521134295 + this.timestamp.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_churches_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_names_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_events_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_workers_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.ticketnumber);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.advertising);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.notes);
+            return hashCode;
+        }
     }
 }

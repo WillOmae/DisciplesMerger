@@ -55,5 +55,46 @@ namespace DisciplesMerger.Models
             }
             return result;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Contacts contacts &&
+                   this.guid == contacts.guid &&
+                   this.timestamp == contacts.timestamp &&
+                   this.fk_churches_guid == contacts.fk_churches_guid &&
+                   this.fk_names_guid == contacts.fk_names_guid &&
+                   this.fk_workers_guid == contacts.fk_workers_guid &&
+                   this.date == contacts.date &&
+                   this.duration == contacts.duration &&
+                   this.type == contacts.type &&
+                   this.studytype == contacts.studytype &&
+                   this.fk_studyseries_guid == contacts.fk_studyseries_guid &&
+                   this.studynumber == contacts.studynumber &&
+                   this.fk_studytopics_guid == contacts.fk_studytopics_guid &&
+                   this.studytopicother == contacts.studytopicother &&
+                   this.completed == contacts.completed &&
+                   this.notes == contacts.notes;
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = 1364224156;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.guid);
+            hashCode = hashCode * -1521134295 + this.timestamp.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_churches_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_names_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_workers_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.date);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.duration);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.type);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.studytype);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_studyseries_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.studynumber);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_studytopics_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.studytopicother);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.completed);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.notes);
+            return hashCode;
+        }
     }
 }

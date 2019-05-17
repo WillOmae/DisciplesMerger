@@ -38,5 +38,28 @@ namespace DisciplesMerger.Models
             }
             return result;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Attendance attendance &&
+                   this.guid == attendance.guid &&
+                   this.timestamp == attendance.timestamp &&
+                   this.fk_churches_guid == attendance.fk_churches_guid &&
+                   this.fk_names_guid == attendance.fk_names_guid &&
+                   this.fk_events_guid == attendance.fk_events_guid &&
+                   this.fk_sessions_guid == attendance.fk_sessions_guid;
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = -1083745242;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.guid);
+            hashCode = hashCode * -1521134295 + this.timestamp.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_churches_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_names_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_events_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_sessions_guid);
+            return hashCode;
+        }
     }
 }

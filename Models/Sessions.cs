@@ -54,5 +54,44 @@ namespace DisciplesMerger.Models
             }
             return result;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Sessions sessions &&
+                   this.guid == sessions.guid &&
+                   this.timestamp == sessions.timestamp &&
+                   this.fk_churches_guid == sessions.fk_churches_guid &&
+                   this.fk_events_guid == sessions.fk_events_guid &&
+                   this.night == sessions.night &&
+                   this.date == sessions.date &&
+                   this.title == sessions.title &&
+                   this.subject == sessions.subject &&
+                   this.venue == sessions.venue &&
+                   this.presenter == sessions.presenter &&
+                   this.fk_workers_guid == sessions.fk_workers_guid &&
+                   this.fk_lessons_guid == sessions.fk_lessons_guid &&
+                   this.materials == sessions.materials &&
+                   this.notes == sessions.notes;
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = -1274052789;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.guid);
+            hashCode = hashCode * -1521134295 + this.timestamp.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_churches_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_events_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.night);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.date);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.title);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.subject);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.venue);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.presenter);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_workers_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_lessons_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.materials);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.notes);
+            return hashCode;
+        }
     }
 }

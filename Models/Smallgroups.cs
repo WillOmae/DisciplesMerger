@@ -64,5 +64,54 @@ namespace DisciplesMerger.Models
             }
             return result;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Smallgroups smallgroups &&
+                   this.guid == smallgroups.guid &&
+                   this.timestamp == smallgroups.timestamp &&
+                   this.fk_churches_guid == smallgroups.fk_churches_guid &&
+                   this.fk_names_guid == smallgroups.fk_names_guid &&
+                   this.fk_workers_guid == smallgroups.fk_workers_guid &&
+                   this.name == smallgroups.name &&
+                   this.description == smallgroups.description &&
+                   this.location == smallgroups.location &&
+                   this.street == smallgroups.street &&
+                   this.unit == smallgroups.unit &&
+                   this.city == smallgroups.city &&
+                   this.state == smallgroups.state &&
+                   this.postal == smallgroups.postal &&
+                   this.country == smallgroups.country &&
+                   this.coordinates == smallgroups.coordinates &&
+                   this.day == smallgroups.day &&
+                   this.time == smallgroups.time &&
+                   this.materials == smallgroups.materials &&
+                   this.notes == smallgroups.notes;
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = 1917642229;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.guid);
+            hashCode = hashCode * -1521134295 + this.timestamp.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_churches_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_names_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_workers_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.name);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.description);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.location);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.street);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.unit);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.city);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.state);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.postal);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.country);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.coordinates);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.day);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.time);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.materials);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.notes);
+            return hashCode;
+        }
     }
 }

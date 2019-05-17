@@ -124,5 +124,114 @@ namespace DisciplesMerger.Models
             }
             return result;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Names names &&
+                   this.guid == names.guid &&
+                   this.timestamp == names.timestamp &&
+                   this.fk_churches_guid == names.fk_churches_guid &&
+                   this.fk_workers_guid == names.fk_workers_guid &&
+                   this.fk_workers_guid2 == names.fk_workers_guid2 &&
+                   this.fk_smallgroups_guid == names.fk_smallgroups_guid &&
+                   this.type == names.type &&
+                   this.level == names.level &&
+                   this.status == names.status &&
+                   this.agegroup == names.agegroup &&
+                   this.marital == names.marital &&
+                   this.ethnicity == names.ethnicity &&
+                   this.ethnicityother == names.ethnicityother &&
+                   this.language == names.language &&
+                   this.languageother == names.languageother &&
+                   this.religion == names.religion &&
+                   this.religionother == names.religionother &&
+                   this.homechurch == names.homechurch &&
+                   this.attendingchurch == names.attendingchurch &&
+                   this.baptismdate == names.baptismdate &&
+                   this.leadsource == names.leadsource &&
+                   this.firstcontact == names.firstcontact &&
+                   this.title == names.title &&
+                   this.firstname == names.firstname &&
+                   this.lastname == names.lastname &&
+                   this.street == names.street &&
+                   this.unit == names.unit &&
+                   this.city == names.city &&
+                   this.state == names.state &&
+                   this.postal == names.postal &&
+                   this.country == names.country &&
+                   this.coordinates == names.coordinates &&
+                   this.phone1 == names.phone1 &&
+                   this.phone1type == names.phone1type &&
+                   this.phone2 == names.phone2 &&
+                   this.phone2type == names.phone2type &&
+                   this.email == names.email &&
+                   this.gender == names.gender &&
+                   this.birthdate == names.birthdate &&
+                   this.referrer == names.referrer &&
+                   this.visitday == names.visitday &&
+                   this.visittime == names.visittime &&
+                   this.autoschedule == names.autoschedule &&
+                   this.notes == names.notes &&
+                   this.confidential == names.confidential &&
+                   this.user == names.user &&
+                   this.password == names.password &&
+                   this.permissions == names.permissions &&
+                   this.color == names.color;
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = -1582930829;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.guid);
+            hashCode = hashCode * -1521134295 + this.timestamp.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_churches_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_workers_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_workers_guid2);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_smallgroups_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.type);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.level);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.status);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.agegroup);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.marital);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.ethnicity);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.ethnicityother);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.language);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.languageother);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.religion);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.religionother);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.homechurch);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.attendingchurch);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.baptismdate);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.leadsource);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.firstcontact);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.title);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.firstname);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.lastname);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.street);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.unit);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.city);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.state);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.postal);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.country);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.coordinates);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.phone1);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.phone1type);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.phone2);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.phone2type);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.email);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.gender);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.birthdate);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.referrer);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.visitday);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.visittime);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.autoschedule);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.notes);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.confidential);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.user);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.password);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.permissions);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.color);
+            return hashCode;
+        }
     }
 }

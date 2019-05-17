@@ -45,5 +45,36 @@ namespace DisciplesMerger.Models
             }
             return result;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Decisions decisions &&
+                   this.guid == decisions.guid &&
+                   this.timestamp == decisions.timestamp &&
+                   this.fk_churches_guid == decisions.fk_churches_guid &&
+                   this.fk_names_guid == decisions.fk_names_guid &&
+                   this.fk_registrations_guid == decisions.fk_registrations_guid &&
+                   this.fk_contacts_guid == decisions.fk_contacts_guid &&
+                   this.fk_sessions_guid == decisions.fk_sessions_guid &&
+                   this.decision == decisions.decision &&
+                   this.decisionother == decisions.decisionother &&
+                   this.decisioncategory == decisions.decisioncategory;
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = -2080173568;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.guid);
+            hashCode = hashCode * -1521134295 + this.timestamp.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_churches_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_names_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_registrations_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_contacts_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_sessions_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.decision);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.decisionother);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.decisioncategory);
+            return hashCode;
+        }
     }
 }

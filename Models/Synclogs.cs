@@ -36,5 +36,26 @@ namespace DisciplesMerger.Models
             }
             return result;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Synclogs synclogs &&
+                   this.timestamp == synclogs.timestamp &&
+                   this.fk_churches_guid == synclogs.fk_churches_guid &&
+                   this.tablename == synclogs.tablename &&
+                   this.fk_guid == synclogs.fk_guid &&
+                   this.action == synclogs.action;
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = -705254040;
+            hashCode = hashCode * -1521134295 + this.timestamp.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_churches_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.tablename);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_guid);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.action);
+            return hashCode;
+        }
     }
 }
