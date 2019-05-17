@@ -50,6 +50,6 @@
         public string user { get; set; }
         public string password { get; set; }
         public string permissions { get; set; }
-        public string colorpublic { get; set; }
+        public string color { get; set; }
     }
 }
