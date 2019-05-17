@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Database.cs" />
     <Compile Include="DB_Statements.cs" />
+    <Compile Include="DisciplesMerger.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Contacts.cs" />
     <Compile Include="Models\Decisions.cs" />
