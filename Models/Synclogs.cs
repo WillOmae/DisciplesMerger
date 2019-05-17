@@ -9,7 +9,22 @@ namespace DisciplesMerger.Models
         public string tablename { get; set; }
         public string fk_guid { get; set; }
         public string action { get; set; }
-
+        public static void Insert(Database database, HashSet<Synclogs> set)
+        {
+            List<List<object>> parameters = new List<List<object>>();
+            foreach (var item in set)
+            {
+                parameters.Add(new List<object>()
+                {
+                    item.timestamp,
+                   item.fk_churches_guid,
+                   item.tablename,
+                   item.fk_guid,
+                   item.action,
+                });
+            }
+            database.Create(DB_Statements.INSERT_SYNCLOGS, parameters);
+        }
 
         public static List<Synclogs> Read(Database database)
         {

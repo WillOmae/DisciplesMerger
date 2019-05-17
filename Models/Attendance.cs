@@ -12,6 +12,23 @@ namespace DisciplesMerger.Models
         public string fk_events_guid { get; set; }
         public string fk_sessions_guid { get; set; }
 
+        public static void Insert(Database database, HashSet<Attendance> set)
+        {
+            List<List<object>> parameters = new List<List<object>>();
+            foreach (var item in set)
+            {
+                parameters.Add(new List<object>()
+                {
+                    item.guid,
+                    item.timestamp,
+                    item.fk_churches_guid,
+                    item.fk_names_guid,
+                    item.fk_events_guid,
+                    item.fk_sessions_guid,
+                });
+            }
+            database.Create(DB_Statements.INSERT_ATTENDANCE, parameters);
+        }
         public static List<Attendance> Read(Database database)
         {
             List<Dictionary<string, object>> reader = database.Read(DB_Statements.READ_ATTENDANCE);

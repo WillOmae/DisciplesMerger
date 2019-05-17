@@ -23,7 +23,36 @@ namespace DisciplesMerger.Models
         public string time { get; set; }
         public string materials { get; set; }
         public string notes { get; set; }
-
+        public static void Insert(Database database, HashSet<Smallgroups> set)
+        {
+            List<List<object>> parameters = new List<List<object>>();
+            foreach (var item in set)
+            {
+                parameters.Add(new List<object>()
+                {
+                    item.guid,
+                   item.timestamp,
+                   item.fk_churches_guid,
+                   item.fk_names_guid,
+                   item.fk_workers_guid,
+                   item.name,
+                   item.description,
+                   item.location,
+                   item.street,
+                   item.unit,
+                   item.city,
+                   item.state,
+                   item.postal,
+                   item.country,
+                   item.coordinates,
+                   item.day,
+                   item.time,
+                   item.materials,
+                   item.notes,
+                });
+            }
+            database.Create(DB_Statements.INSERT_SMALLGROUPS, parameters);
+        }
 
         public static List<Smallgroups> Read(Database database)
         {

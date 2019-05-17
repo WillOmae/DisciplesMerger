@@ -13,7 +13,26 @@ namespace DisciplesMerger.Models
         public string ticketnumber { get; set; }
         public string advertising { get; set; }
         public string notes { get; set; }
-
+        public static void Insert(Database database, HashSet<Registrations> set)
+        {
+            List<List<object>> parameters = new List<List<object>>();
+            foreach (var item in set)
+            {
+                parameters.Add(new List<object>()
+                {
+                    item.guid,
+                   item.timestamp,
+                   item.fk_churches_guid,
+                   item.fk_names_guid,
+                   item.fk_events_guid,
+                   item.fk_workers_guid,
+                   item.ticketnumber,
+                   item.advertising,
+                   item.notes,
+                });
+            }
+            database.Create(DB_Statements.INSERT_REGISTRATIONS, parameters);
+        }
 
         public static List<Registrations> Read(Database database)
         {

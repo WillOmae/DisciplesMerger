@@ -25,6 +25,37 @@ namespace DisciplesMerger.Models
         public string email { get; set; }
         public string notes { get; set; }
 
+        public static void Insert(Database database, HashSet<Metadata> set)
+        {
+            List<List<object>> parameters = new List<List<object>>();
+            foreach (var item in set)
+            {
+                parameters.Add(new List<object>()
+                {
+                    item.guid,
+                   item.timestamp,
+                   item.version,
+                   item.shared,
+                   item.account_id,
+                   item.lastsync,
+                   item.needssync,
+                   item.name,
+                   item.description,
+                   item.street,
+                   item.unit,
+                   item.city,
+                   item.state,
+                   item.postal,
+                   item.country,
+                   item.coordinates,
+                   item.phone1,
+                   item.phone2,
+                   item.email,
+                   item.notes,
+                });
+            }
+            database.Create(DB_Statements.INSERT_METADATA, parameters);
+        }
 
         public static List<Metadata> Read(Database database)
         {

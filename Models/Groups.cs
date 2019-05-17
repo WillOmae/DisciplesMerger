@@ -11,6 +11,23 @@ namespace DisciplesMerger.Models
         public string type { get; set; }
         public string guids { get; set; }
 
+        public static void Insert(Database database, HashSet<Groups> set)
+        {
+            List<List<object>> parameters = new List<List<object>>();
+            foreach (var item in set)
+            {
+                parameters.Add(new List<object>()
+                {
+                    item.guid ,
+                    item.timestamp ,
+                    item.fk_workers_guid ,
+                    item.name ,
+                    item.type ,
+                    item.guids ,
+            });
+            }
+            database.Create(DB_Statements.INSERT_GROUPS, parameters);
+        }
 
         public static List<Groups> Read(Database database)
         {

@@ -12,6 +12,24 @@ namespace DisciplesMerger.Models
         public string interestother { get; set; }
         public string interestcategory { get; set; }
 
+        public static void Insert(Database database, HashSet<Interests> set)
+        {
+            List<List<object>> parameters = new List<List<object>>();
+            foreach (var item in set)
+            {
+                parameters.Add(new List<object>()
+                {
+                    item.guid ,
+                   item.timestamp ,
+                   item.fk_churches_guid ,
+                   item.fk_names_guid ,
+                   item.interest ,
+                   item.interestother ,
+                   item.interestcategory,
+                });
+            }
+            database.Create(DB_Statements.INSERT_INTERESTS, parameters);
+        }
 
         public static List<Interests> Read(Database database)
         {

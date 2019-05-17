@@ -15,6 +15,28 @@ namespace DisciplesMerger.Models
         public string decisionother { get; set; }
         public string decisioncategory { get; set; }
 
+        public static void Insert(Database database, HashSet<Decisions> set)
+        {
+            List<List<object>> parameters = new List<List<object>>();
+            foreach (var item in set)
+            {
+                parameters.Add(new List<object>()
+                {
+                    item.guid,
+                    item.timestamp,
+                    item.fk_churches_guid,
+                    item.fk_names_guid,
+                    item.fk_names_guid,
+                    item.fk_registrations_guid,
+                    item.fk_contacts_guid,
+                    item.fk_sessions_guid,
+                    item.decision,
+                    item.decisionother,
+                    item.decisioncategory,
+                });
+            }
+            database.Create(DB_Statements.INSERT_DECISIONS, parameters);
+        }
         public static List<Decisions> Read(Database database)
         {
             List<Dictionary<string, object>> reader = database.Read(DB_Statements.READ_DECISIONS);

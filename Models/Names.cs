@@ -53,7 +53,66 @@ namespace DisciplesMerger.Models
         public string password { get; set; }
         public string permissions { get; set; }
         public string color { get; set; }
-
+        public static void Insert(Database database, HashSet<Names> set)
+        {
+            List<List<object>> parameters = new List<List<object>>();
+            foreach (var item in set)
+            {
+                parameters.Add(new List<object>()
+                {
+                    item.guid,
+                   item.timestamp,
+                   item.fk_churches_guid,
+                   item.fk_workers_guid,
+                   item.fk_workers_guid2,
+                   item.fk_smallgroups_guid,
+                   item.type,
+                   item.level,
+                   item.status,
+                   item.agegroup,
+                   item.marital,
+                   item.ethnicity,
+                   item.ethnicityother,
+                   item.language,
+                   item.languageother,
+                   item.religion,
+                   item.religionother,
+                   item.homechurch,
+                   item.attendingchurch,
+                   item.baptismdate,
+                   item.leadsource,
+                   item.firstcontact,
+                   item.title,
+                   item.firstname,
+                   item.lastname,
+                   item.street,
+                   item.unit,
+                   item.city,
+                   item.state,
+                   item.postal,
+                   item.country,
+                   item.coordinates,
+                   item.phone1,
+                   item.phone1type,
+                   item.phone2,
+                   item.phone2type,
+                   item.email,
+                   item.gender,
+                   item.birthdate,
+                   item.referrer,
+                   item.visitday,
+                   item.visittime,
+                   item.autoschedule,
+                   item.notes,
+                   item.confidential,
+                   item.user,
+                   item.password,
+                   item.permissions,
+                   item.color,
+                });
+            }
+            database.Create(DB_Statements.INSERT_NAMES, parameters);
+        }
 
         public static List<Names> Read(Database database)
         {

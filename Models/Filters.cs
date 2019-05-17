@@ -14,6 +14,26 @@ namespace DisciplesMerger.Models
         public string operators { get; set; }
         public string queries { get; set; }
 
+        public static void Insert(Database database, HashSet<Filters> set)
+        {
+            List<List<object>> parameters = new List<List<object>>();
+            foreach (var item in set)
+            {
+                parameters.Add(new List<object>()
+                {
+                    item.guid ,
+                    item.timestamp ,
+                    item.fk_workers_guid ,
+                    item.name ,
+                    item.andor ,
+                    item.categories ,
+                    item.columns ,
+                    item.operators ,
+                    item.queries ,
+                });
+            }
+            database.Create(DB_Statements.INSERT_FILTERS, parameters);
+        }
 
         public static List<Filters> Read(Database database)
         {
