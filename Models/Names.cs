@@ -55,15 +55,15 @@ namespace DisciplesMerger.Models
         public string color { get; set; }
 
 
-        public static HashSet<Names> Read(Database database)
+        public static List<Names> Read(Database database)
         {
             List<Dictionary<string, object>> reader = database.Read(DB_Statements.READ_NAMES);
             return BuildFromReader(reader);
         }
 
-        private static HashSet<Names> BuildFromReader(List<Dictionary<string, object>> rows)
+        private static List<Names> BuildFromReader(List<Dictionary<string, object>> rows)
         {
-            HashSet<Names> result = new HashSet<Names>();
+            var result = new List<Names>();
             if (rows != null)
             {
                 foreach (Dictionary<string, object> row in rows)

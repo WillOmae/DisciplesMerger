@@ -12,15 +12,15 @@ namespace DisciplesMerger.Models
         public string fk_events_guid { get; set; }
         public string fk_sessions_guid { get; set; }
 
-        public static HashSet<Attendance> Read(Database database)
+        public static List<Attendance> Read(Database database)
         {
             List<Dictionary<string, object>> reader = database.Read(DB_Statements.READ_ATTENDANCE);
             return BuildFromReader(reader);
         }
 
-        private static HashSet<Attendance> BuildFromReader(List<Dictionary<string, object>> rows)
+        private static List<Attendance> BuildFromReader(List<Dictionary<string, object>> rows)
         {
-            HashSet<Attendance> result = new HashSet<Attendance>();
+            var result = new List<Attendance>();
             if (rows != null)
             {
                 foreach (Dictionary<string, object> row in rows)

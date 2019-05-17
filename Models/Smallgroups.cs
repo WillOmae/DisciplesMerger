@@ -25,15 +25,15 @@ namespace DisciplesMerger.Models
         public string notes { get; set; }
 
 
-        public static HashSet<Smallgroups> Read(Database database)
+        public static List<Smallgroups> Read(Database database)
         {
             List<Dictionary<string, object>> reader = database.Read(DB_Statements.READ_SMALLGROUPS);
             return BuildFromReader(reader);
         }
 
-        private static HashSet<Smallgroups> BuildFromReader(List<Dictionary<string, object>> rows)
+        private static List<Smallgroups> BuildFromReader(List<Dictionary<string, object>> rows)
         {
-            HashSet<Smallgroups> result = new HashSet<Smallgroups>();
+            var result = new List<Smallgroups>();
             if (rows != null)
             {
                 foreach (Dictionary<string, object> row in rows)

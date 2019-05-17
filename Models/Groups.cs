@@ -12,15 +12,15 @@ namespace DisciplesMerger.Models
         public string guids { get; set; }
 
 
-        public static HashSet<Groups> Read(Database database)
+        public static List<Groups> Read(Database database)
         {
             List<Dictionary<string, object>> reader = database.Read(DB_Statements.READ_GROUPS);
             return BuildFromReader(reader);
         }
 
-        private static HashSet<Groups> BuildFromReader(List<Dictionary<string, object>> rows)
+        private static List<Groups> BuildFromReader(List<Dictionary<string, object>> rows)
         {
-            HashSet<Groups> result = new HashSet<Groups>();
+            var result = new List<Groups>();
             if (rows != null)
             {
                 foreach (Dictionary<string, object> row in rows)

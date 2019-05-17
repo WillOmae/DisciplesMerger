@@ -11,15 +11,15 @@ namespace DisciplesMerger.Models
         public string action { get; set; }
 
 
-        public static HashSet<Synclogs> Read(Database database)
+        public static List<Synclogs> Read(Database database)
         {
             List<Dictionary<string, object>> reader = database.Read(DB_Statements.READ_SYNCLOGS);
             return BuildFromReader(reader);
         }
 
-        private static HashSet<Synclogs> BuildFromReader(List<Dictionary<string, object>> rows)
+        private static List<Synclogs> BuildFromReader(List<Dictionary<string, object>> rows)
         {
-            HashSet<Synclogs> result = new HashSet<Synclogs>();
+            var result = new List<Synclogs>();
             if (rows != null)
             {
                 foreach (Dictionary<string, object> row in rows)

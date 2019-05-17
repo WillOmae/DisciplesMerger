@@ -18,15 +18,15 @@ namespace DisciplesMerger.Models
         public string completed { get; set; }
 
 
-        public static HashSet<Journalentries> Read(Database database)
+        public static List<Journalentries> Read(Database database)
         {
             List<Dictionary<string, object>> reader = database.Read(DB_Statements.READ_JOURNALENTRIES);
             return BuildFromReader(reader);
         }
 
-        private static HashSet<Journalentries> BuildFromReader(List<Dictionary<string, object>> rows)
+        private static List<Journalentries> BuildFromReader(List<Dictionary<string, object>> rows)
         {
-            HashSet<Journalentries> result = new HashSet<Journalentries>();
+            var result = new List<Journalentries>();
             if (rows != null)
             {
                 foreach (Dictionary<string, object> row in rows)

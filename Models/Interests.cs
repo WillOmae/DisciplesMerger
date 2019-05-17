@@ -13,15 +13,15 @@ namespace DisciplesMerger.Models
         public string interestcategory { get; set; }
 
 
-        public static HashSet<Interests> Read(Database database)
+        public static List<Interests> Read(Database database)
         {
             List<Dictionary<string, object>> reader = database.Read(DB_Statements.READ_INTERESTS);
             return BuildFromReader(reader);
         }
 
-        private static HashSet<Interests> BuildFromReader(List<Dictionary<string, object>> rows)
+        private static List<Interests> BuildFromReader(List<Dictionary<string, object>> rows)
         {
-            HashSet<Interests> result = new HashSet<Interests>();
+            var result = new List<Interests>();
             if (rows != null)
             {
                 foreach (Dictionary<string, object> row in rows)

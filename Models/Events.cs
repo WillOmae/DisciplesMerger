@@ -25,15 +25,15 @@ namespace DisciplesMerger.Models
         public string coordinates { get; set; }
         public string notes { get; set; }
 
-        public static HashSet<Events> Read(Database database)
+        public static List<Events> Read(Database database)
         {
             List<Dictionary<string, object>> reader = database.Read(DB_Statements.READ_EVENTS);
             return BuildFromReader(reader);
         }
 
-        private static HashSet<Events> BuildFromReader(List<Dictionary<string, object>> rows)
+        private static List<Events> BuildFromReader(List<Dictionary<string, object>> rows)
         {
-            HashSet<Events> result = new HashSet<Events>();
+            var result = new List<Events>();
             if (rows != null)
             {
                 foreach (Dictionary<string, object> row in rows)
