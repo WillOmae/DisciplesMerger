@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DisciplesMerger.Models
 {
     public class Relationships
     {
         public string guid { get; set; }
-        public long timestamp { get; set; }
+        public long? timestamp { get; set; }
         public string fk_churches_guid { get; set; }
         public string fk_names_guid { get; set; }
         public string fk_names_guid2 { get; set; }
@@ -45,13 +46,13 @@ namespace DisciplesMerger.Models
                 {
                     result.Add(new Relationships()
                     {
-                        guid = (string)row["guid"],
-                        timestamp = (long)row["timestamp"],
-                        fk_churches_guid = (string)row["fk_churches_guid"],
-                        fk_names_guid = (string)row["fk_names_guid"],
+                        guid = row["guid"] == DBNull.Value ? null : (string)row["guid"],
+                        timestamp = row["timestamp"] == DBNull.Value ? null : (long?)row["timestamp"],
+                        fk_churches_guid = row["fk_churches_guid"] == DBNull.Value ? null : (string)row["fk_churches_guid"],
+                        fk_names_guid = row["fk_names_guid"] == DBNull.Value ? null : (string)row["fk_names_guid"],
                         fk_names_guid2 = (string)row["fk_names_guid2"],
-                        type = (string)row["type"],
-                        sort = (string)row["sort"],
+                        type = row["type"] == DBNull.Value ? null : (string)row["type"],
+                        sort = row["sort"] == DBNull.Value ? null : (string)row["sort"],
                     });
                 }
             }

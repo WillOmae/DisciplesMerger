@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DisciplesMerger.Models
 {
     public class Names
     {
         public string guid { get; set; }
-        public long timestamp { get; set; }
+        public long? timestamp { get; set; }
         public string fk_churches_guid { get; set; }
         public string fk_workers_guid { get; set; }
         public string fk_workers_guid2 { get; set; }
@@ -23,9 +24,9 @@ namespace DisciplesMerger.Models
         public string religionother { get; set; }
         public string homechurch { get; set; }
         public string attendingchurch { get; set; }
-        public string baptismdate { get; set; }
+        public long? baptismdate { get; set; }
         public string leadsource { get; set; }
-        public string firstcontact { get; set; }
+        public long? firstcontact { get; set; }
         public string title { get; set; }
         public string firstname { get; set; }
         public string lastname { get; set; }
@@ -42,17 +43,17 @@ namespace DisciplesMerger.Models
         public string phone2type { get; set; }
         public string email { get; set; }
         public string gender { get; set; }
-        public string birthdate { get; set; }
+        public long? birthdate { get; set; }
         public string referrer { get; set; }
         public string visitday { get; set; }
-        public string visittime { get; set; }
+        public double? visittime { get; set; }
         public string autoschedule { get; set; }
         public string notes { get; set; }
         public string confidential { get; set; }
         public string user { get; set; }
         public string password { get; set; }
         public string permissions { get; set; }
-        public string color { get; set; }
+        public long? color { get; set; }
         public static void Insert(Database database, HashSet<Names> set)
         {
             List<List<object>> parameters = new List<List<object>>();
@@ -129,55 +130,55 @@ namespace DisciplesMerger.Models
                 {
                     result.Add(new Names()
                     {
-                        guid = (string)row["guid"],
-                        timestamp = (long)row["timestamp"],
-                        fk_churches_guid = (string)row["fk_churches_guid"],
-                        fk_workers_guid = (string)row["fk_workers_guid"],
-                        fk_workers_guid2 = (string)row["fk_workers_guid2"],
-                        fk_smallgroups_guid = (string)row["fk_smallgroups_guid"],
-                        type = (string)row["type"],
-                        level = (string)row["level"],
-                        status = (string)row["status"],
-                        agegroup = (string)row["agegroup"],
-                        marital = (string)row["marital"],
-                        ethnicity = (string)row["ethnicity"],
-                        ethnicityother = (string)row["ethnicityother"],
-                        language = (string)row["language"],
-                        languageother = (string)row["languageother"],
-                        religion = (string)row["religion"],
-                        religionother = (string)row["religionother"],
-                        homechurch = (string)row["homechurch"],
-                        attendingchurch = (string)row["attendingchurch"],
-                        baptismdate = (string)row["baptismdate"],
-                        leadsource = (string)row["leadsource"],
-                        firstcontact = (string)row["firstcontact"],
-                        title = (string)row["title"],
-                        firstname = (string)row["firstname"],
-                        lastname = (string)row["lastname"],
-                        street = (string)row["street"],
-                        unit = (string)row["unit"],
-                        city = (string)row["city"],
-                        state = (string)row["state"],
-                        postal = (string)row["postal"],
-                        country = (string)row["country"],
-                        coordinates = (string)row["coordinates"],
-                        phone1 = (string)row["phone1"],
-                        phone1type = (string)row["phone1type"],
-                        phone2 = (string)row["phone2"],
-                        phone2type = (string)row["phone2type"],
-                        email = (string)row["email"],
-                        gender = (string)row["gender"],
-                        birthdate = (string)row["birthdate"],
-                        referrer = (string)row["referrer"],
-                        visitday = (string)row["visitday"],
-                        visittime = (string)row["visittime"],
-                        autoschedule = (string)row["autoschedule"],
-                        notes = (string)row["notes"],
-                        confidential = (string)row["confidential"],
-                        user = (string)row["user"],
-                        password = (string)row["password"],
-                        permissions = (string)row["permissions"],
-                        color = (string)row["color"],
+                        guid = row["guid"] == DBNull.Value ? null : (string)row["guid"],
+                        timestamp = row["timestamp"] == DBNull.Value ? null : (long?)row["timestamp"],
+                        fk_churches_guid = row["fk_churches_guid"] == DBNull.Value ? null : (string)row["fk_churches_guid"],
+                        fk_workers_guid = row["fk_workers_guid"] == DBNull.Value ? null : (string)row["fk_workers_guid"],
+                        fk_workers_guid2 = row["fk_workers_guid2"] == DBNull.Value ? null : (string)row["fk_workers_guid2"],
+                        fk_smallgroups_guid = row["fk_smallgroups_guid"] == DBNull.Value ? null : (string)row["fk_smallgroups_guid"],
+                        type = row["type"] == DBNull.Value ? null : (string)row["type"],
+                        level = row["level"] == DBNull.Value ? null : (string)row["level"],
+                        status = row["status"] == DBNull.Value ? null : (string)row["status"],
+                        agegroup = row["agegroup"] == DBNull.Value ? null : (string)row["agegroup"],
+                        marital = row["marital"] == DBNull.Value ? null : (string)row["marital"],
+                        ethnicity = row["ethnicity"] == DBNull.Value ? null : (string)row["ethnicity"],
+                        ethnicityother = row["ethnicityother"] == DBNull.Value ? null : (string)row["ethnicityother"],
+                        language = row["language"] == DBNull.Value ? null : (string)row["language"],
+                        languageother = row["languageother"] == DBNull.Value ? null : (string)row["languageother"],
+                        religion = row["religion"] == DBNull.Value ? null : (string)row["religion"],
+                        religionother = row["religionother"] == DBNull.Value ? null : (string)row["religionother"],
+                        homechurch = row["homechurch"] == DBNull.Value ? null : (string)row["homechurch"],
+                        attendingchurch = row["attendingchurch"] == DBNull.Value ? null : (string)row["attendingchurch"],
+                        baptismdate = row["baptismdate"] == DBNull.Value ? null : (long?)row["baptismdate"],
+                        leadsource = row["leadsource"] == DBNull.Value ? null : (string)row["leadsource"],
+                        firstcontact = row["firstcontact"] == DBNull.Value ? null : (long?)row["firstcontact"],
+                        title = row["title"] == DBNull.Value ? null : (string)row["title"],
+                        firstname = row["firstname"] == DBNull.Value ? null : (string)row["firstname"],
+                        lastname = row["lastname"] == DBNull.Value ? null : (string)row["lastname"],
+                        street = row["street"] == DBNull.Value ? null : (string)row["street"],
+                        unit = row["unit"] == DBNull.Value ? null : (string)row["unit"],
+                        city = row["city"] == DBNull.Value ? null : (string)row["city"],
+                        state = row["state"] == DBNull.Value ? null : (string)row["state"],
+                        postal = row["postal"] == DBNull.Value ? null : (string)row["postal"],
+                        country = row["country"] == DBNull.Value ? null : (string)row["country"],
+                        coordinates = row["coordinates"] == DBNull.Value ? null : (string)row["coordinates"],
+                        phone1 = row["phone1"] == DBNull.Value ? null : (string)row["phone1"],
+                        phone1type = row["phone1type"] == DBNull.Value ? null : (string)row["phone1type"],
+                        phone2 = row["phone2"] == DBNull.Value ? null : (string)row["phone2"],
+                        phone2type = row["phone2type"] == DBNull.Value ? null : (string)row["phone2type"],
+                        email = row["email"] == DBNull.Value ? null : (string)row["email"],
+                        gender = row["gender"] == DBNull.Value ? null : (string)row["gender"],
+                        birthdate = row["birthdate"] == DBNull.Value ? null : (long?)row["birthdate"],
+                        referrer = row["referrer"] == DBNull.Value ? null : (string)row["referrer"],
+                        visitday = row["visitday"] == DBNull.Value ? null : (string)row["visitday"],
+                        //visittime = row["visittime"] == DBNull.Value ? null : (double?)row["visittime"],
+                        autoschedule = row["autoschedule"] == DBNull.Value ? null : (string)row["autoschedule"],
+                        notes = row["notes"] == DBNull.Value ? null : (string)row["notes"],
+                        confidential = row["confidential"] == DBNull.Value ? null : (string)row["confidential"],
+                        user = row["user"] == DBNull.Value ? null : (string)row["user"],
+                        password = row["password"] == DBNull.Value ? null : (string)row["password"],
+                        permissions = row["permissions"] == DBNull.Value ? null : (string)row["permissions"],
+                        color = row["color"] == DBNull.Value ? null : (long?)row["color"],
                     });
                 }
             }
@@ -260,9 +261,9 @@ namespace DisciplesMerger.Models
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.religionother);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.homechurch);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.attendingchurch);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.baptismdate);
+            hashCode = hashCode * -1521134295 + this.baptismdate.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.leadsource);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.firstcontact);
+            hashCode = hashCode * -1521134295 + this.firstcontact.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.title);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.firstname);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.lastname);
@@ -279,17 +280,17 @@ namespace DisciplesMerger.Models
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.phone2type);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.email);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.gender);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.birthdate);
+            hashCode = hashCode * -1521134295 + this.birthdate.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.referrer);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.visitday);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.visittime);
+            hashCode = hashCode * -1521134295 + this.visittime.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.autoschedule);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.notes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.confidential);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.user);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.password);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.permissions);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.color);
+            hashCode = hashCode * -1521134295 + this.color.GetHashCode();
             return hashCode;
         }
     }

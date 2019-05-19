@@ -1,15 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DisciplesMerger.Models
 {
     public class Sessions
     {
         public string guid { get; set; }
-        public long timestamp { get; set; }
+        public long? timestamp { get; set; }
         public string fk_churches_guid { get; set; }
         public string fk_events_guid { get; set; }
-        public string night { get; set; }
-        public string date { get; set; }
+        public long? night { get; set; }
+        public double? date { get; set; }
         public string title { get; set; }
         public string subject { get; set; }
         public string venue { get; set; }
@@ -59,20 +60,20 @@ namespace DisciplesMerger.Models
                 {
                     result.Add(new Sessions()
                     {
-                        guid = (string)row["guid"],
-                        timestamp = (long)row["timestamp"],
-                        fk_churches_guid = (string)row["fk_churches_guid"],
-                        fk_events_guid = (string)row["fk_events_guid"],
-                        night = (string)row["night"],
-                        date = (string)row["date"],
-                        title = (string)row["title"],
-                        subject = (string)row["subject"],
-                        venue = (string)row["venue"],
-                        presenter = (string)row["presenter"],
-                        fk_workers_guid = (string)row["fk_workers_guid"],
-                        fk_lessons_guid = (string)row["fk_lessons_guid"],
-                        materials = (string)row["materials"],
-                        notes = (string)row["notes"],
+                        guid = row["guid"] == DBNull.Value ? null : (string)row["guid"],
+                        timestamp = row["timestamp"] == DBNull.Value ? null : (long?)row["timestamp"],
+                        fk_churches_guid = row["fk_churches_guid"] == DBNull.Value ? null : (string)row["fk_churches_guid"],
+                        fk_events_guid = row["fk_events_guid"] == DBNull.Value ? null : (string)row["fk_events_guid"],
+                        night = row["night"] == DBNull.Value ? null : (long?)row["night"],
+                        date = row["date"] == DBNull.Value ? null : (double?)row["date"],
+                        title = row["title"] == DBNull.Value ? null : (string)row["title"],
+                        subject = row["subject"] == DBNull.Value ? null : (string)row["subject"],
+                        venue = row["venue"] == DBNull.Value ? null : (string)row["venue"],
+                        presenter = row["presenter"] == DBNull.Value ? null : (string)row["presenter"],
+                        fk_workers_guid = row["fk_workers_guid"] == DBNull.Value ? null : (string)row["fk_workers_guid"],
+                        fk_lessons_guid = row["fk_lessons_guid"] == DBNull.Value ? null : (string)row["fk_lessons_guid"],
+                        materials = row["materials"] == DBNull.Value ? null : (string)row["materials"],
+                        notes = row["notes"] == DBNull.Value ? null : (string)row["notes"],
                     });
                 }
             }
@@ -105,8 +106,8 @@ namespace DisciplesMerger.Models
             hashCode = hashCode * -1521134295 + this.timestamp.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_churches_guid);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_events_guid);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.night);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.date);
+            hashCode = hashCode * -1521134295 + this.night.GetHashCode();
+            hashCode = hashCode * -1521134295 + this.date.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.title);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.subject);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.venue);

@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DisciplesMerger.Models
 {
     public class Contacts
     {
         public string guid { get; set; }
-        public long timestamp { get; set; }
+        public long? timestamp { get; set; }
         public string fk_churches_guid { get; set; }
         public string fk_names_guid { get; set; }
         public string fk_workers_guid { get; set; }
@@ -61,21 +62,21 @@ namespace DisciplesMerger.Models
                 {
                     result.Add(new Contacts()
                     {
-                        guid = (string)row["guid"],
-                        timestamp = (long)row["timestamp"],
-                        fk_churches_guid = (string)row["fk_churches_guid"],
-                        fk_names_guid = (string)row["fk_names_guid"],
-                        fk_workers_guid = (string)row["fk_workers_guid"],
-                        date = (string)row["date"],
-                        duration = (string)row["duration"],
-                        type = (string)row["type"],
-                        studytype = (string)row["studytype"],
-                        fk_studyseries_guid = (string)row["fk_studyseries_guid"],
-                        studynumber = (string)row["studynumber"],
-                        fk_studytopics_guid = (string)row["fk_studytopics_guid"],
-                        studytopicother = (string)row["studytopicother"],
-                        completed = (string)row["completed"],
-                        notes = (string)row["notes"],
+                        guid = row["guid"] == DBNull.Value ? null : (string)row["guid"],
+                        timestamp = row["timestamp"] == DBNull.Value ? null : (long?)row["timestamp"],
+                        fk_churches_guid = row["fk_churches_guid"] == DBNull.Value ? null : (string)row["fk_churches_guid"],
+                        fk_names_guid = row["fk_names_guid"] == DBNull.Value ? null : (string)row["fk_names_guid"],
+                        fk_workers_guid = row["fk_workers_guid"] == DBNull.Value ? null : (string)row["fk_workers_guid"],
+                        date = row["date"] == DBNull.Value ? null : (string)row["date"],
+                        duration = row["duration"] == DBNull.Value ? null : (string)row["duration"],
+                        type = row["type"] == DBNull.Value ? null : (string)row["type"],
+                        studytype = row["studytype"] == DBNull.Value ? null : (string)row["studytype"],
+                        fk_studyseries_guid = row["fk_studyseries_guid"] == DBNull.Value ? null : (string)row["fk_studyseries_guid"],
+                        studynumber = row["studynumber"] == DBNull.Value ? null : (string)row["studynumber"],
+                        fk_studytopics_guid = row["fk_studytopics_guid"] == DBNull.Value ? null : (string)row["fk_studytopics_guid"],
+                        studytopicother = row["studytopicother"] == DBNull.Value ? null : (string)row["studytopicother"],
+                        completed = row["completed"] == DBNull.Value ? null : (string)row["completed"],
+                        notes = row["notes"] == DBNull.Value ? null : (string)row["notes"],
                     });
                 }
             }

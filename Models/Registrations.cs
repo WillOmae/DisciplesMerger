@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DisciplesMerger.Models
 {
     public class Registrations
     {
         public string guid { get; set; }
-        public long timestamp { get; set; }
+        public long? timestamp { get; set; }
         public string fk_churches_guid { get; set; }
         public string fk_names_guid { get; set; }
         public string fk_events_guid { get; set; }
@@ -49,15 +50,15 @@ namespace DisciplesMerger.Models
                 {
                     result.Add(new Registrations()
                     {
-                        guid = (string)row["guid"],
-                        timestamp = (long)row["timestamp"],
-                        fk_churches_guid = (string)row["fk_churches_guid"],
-                        fk_names_guid = (string)row["fk_names_guid"],
-                        fk_events_guid = (string)row["fk_events_guid"],
-                        fk_workers_guid = (string)row["fk_workers_guid"],
-                        ticketnumber = (string)row["ticketnumber"],
-                        advertising = (string)row["advertising"],
-                        notes = (string)row["notes"],
+                        guid = row["guid"] == DBNull.Value ? null : (string)row["guid"],
+                        timestamp = row["timestamp"] == DBNull.Value ? null : (long?)row["timestamp"],
+                        fk_churches_guid = row["fk_churches_guid"] == DBNull.Value ? null : (string)row["fk_churches_guid"],
+                        fk_names_guid = row["fk_names_guid"] == DBNull.Value ? null : (string)row["fk_names_guid"],
+                        fk_events_guid = row["fk_events_guid"] == DBNull.Value ? null : (string)row["fk_events_guid"],
+                        fk_workers_guid = row["fk_workers_guid"] == DBNull.Value ? null : (string)row["fk_workers_guid"],
+                        ticketnumber = row["ticketnumber"] == DBNull.Value ? null : (string)row["ticketnumber"],
+                        advertising = row["advertising"] == DBNull.Value ? null : (string)row["advertising"],
+                        notes = row["notes"] == DBNull.Value ? null : (string)row["notes"],
                     });
                 }
             }

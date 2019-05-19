@@ -1,16 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DisciplesMerger.Models
 {
     public class Metadata
     {
         public string guid { get; set; }
-        public long timestamp { get; set; }
-        public string version { get; set; }
+        public long? timestamp { get; set; }
+        public double? version { get; set; }
         public string shared { get; set; }
         public string account_id { get; set; }
         public string lastsync { get; set; }
-        public string needssync { get; set; }
+        public long? needssync { get; set; }
         public string name { get; set; }
         public string description { get; set; }
         public string street { get; set; }
@@ -72,26 +73,26 @@ namespace DisciplesMerger.Models
                 {
                     result.Add(new Metadata()
                     {
-                        guid = (string)row["guid"],
-                        timestamp = (long)row["timestamp"],
-                        version = (string)row["version"],
-                        shared = (string)row["shared"],
-                        account_id = (string)row["account_id"],
-                        lastsync = (string)row["lastsync"],
-                        needssync = (string)row["needssync"],
-                        name = (string)row["name"],
-                        description = (string)row["description"],
-                        street = (string)row["street"],
-                        unit = (string)row["unit"],
-                        city = (string)row["city"],
-                        state = (string)row["state"],
-                        postal = (string)row["postal"],
-                        country = (string)row["country"],
-                        coordinates = (string)row["coordinates"],
+                        guid = row["guid"] == DBNull.Value ? null : (string)row["guid"],
+                        timestamp = row["timestamp"] == DBNull.Value ? null : (long?)row["timestamp"],
+                        version = row["version"] == DBNull.Value ? null : (double?)row["version"],
+                        shared = row["shared"] == DBNull.Value ? null : (string)row["shared"],
+                        account_id = row["account_id"] == DBNull.Value ? null : (string)row["account_id"],
+                        lastsync = row["lastsync"] == DBNull.Value ? null : (string)row["lastsync"],
+                        needssync = row["needssync"] == DBNull.Value ? null : (long?)row["needssync"],
+                        name = row["name"] == DBNull.Value ? null : (string)row["name"],
+                        description = row["description"] == DBNull.Value ? null : (string)row["description"],
+                        street = row["street"] == DBNull.Value ? null : (string)row["street"],
+                        unit = row["unit"] == DBNull.Value ? null : (string)row["unit"],
+                        city = row["city"] == DBNull.Value ? null : (string)row["city"],
+                        state = row["state"] == DBNull.Value ? null : (string)row["state"],
+                        postal = row["postal"] == DBNull.Value ? null : (string)row["postal"],
+                        country = row["country"] == DBNull.Value ? null : (string)row["country"],
+                        coordinates = row["coordinates"] == DBNull.Value ? null : (string)row["coordinates"],
                         phone1 = (string)row["phone1"],
                         phone2 = (string)row["phone2"],
-                        email = (string)row["email"],
-                        notes = (string)row["notes"],
+                        email = row["email"] == DBNull.Value ? null : (string)row["email"],
+                        notes = row["notes"] == DBNull.Value ? null : (string)row["notes"],
                     });
                 }
             }
@@ -128,11 +129,11 @@ namespace DisciplesMerger.Models
             var hashCode = -1307005186;
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.guid);
             hashCode = hashCode * -1521134295 + this.timestamp.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.version);
+            hashCode = hashCode * -1521134295 + this.version.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.shared);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.account_id);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.lastsync);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.needssync);
+            hashCode = hashCode * -1521134295 + this.needssync.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.name);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.description);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.street);

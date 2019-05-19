@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DisciplesMerger.Models
 {
     public class Decisions
     {
         public string guid { get; set; }
-        public long timestamp { get; set; }
+        public long? timestamp { get; set; }
         public string fk_churches_guid { get; set; }
         public string fk_names_guid { get; set; }
         public string fk_registrations_guid { get; set; }
@@ -52,16 +53,16 @@ namespace DisciplesMerger.Models
                 {
                     result.Add(new Decisions()
                     {
-                        guid = (string)row["guid"],
-                        timestamp = (long)row["timestamp"],
-                        fk_churches_guid = (string)row["fk_churches_guid"],
-                        fk_names_guid = (string)row["fk_names_guid"],
-                        fk_registrations_guid = (string)row["fk_registrations_guid"],
-                        fk_contacts_guid = (string)row["fk_contacts_guid"],
-                        fk_sessions_guid = (string)row["fk_sessions_guid"],
-                        decision = (string)row["decision"],
-                        decisionother = (string)row["decisionother"],
-                        decisioncategory = (string)row["decisioncategory"],
+                        guid = row["guid"] == DBNull.Value ? null : (string)row["guid"],
+                        timestamp = row["timestamp"] == DBNull.Value ? null : (long?)row["timestamp"],
+                        fk_churches_guid = row["fk_churches_guid"] == DBNull.Value ? null : (string)row["fk_churches_guid"],
+                        fk_names_guid = row["fk_names_guid"] == DBNull.Value ? null : (string)row["fk_names_guid"],
+                        fk_registrations_guid = row["fk_registrations_guid"] == DBNull.Value ? null : (string)row["fk_registrations_guid"],
+                        fk_contacts_guid = row["fk_contacts_guid"] == DBNull.Value ? null : (string)row["fk_contacts_guid"],
+                        fk_sessions_guid = row["fk_sessions_guid"] == DBNull.Value ? null : (string)row["fk_sessions_guid"],
+                        decision = row["decision"] == DBNull.Value ? null : (string)row["decision"],
+                        decisionother = row["decisionother"] == DBNull.Value ? null : (string)row["decisionother"],
+                        decisioncategory = row["decisioncategory"] == DBNull.Value ? null : (string)row["decisioncategory"],
                     });
                 }
             }

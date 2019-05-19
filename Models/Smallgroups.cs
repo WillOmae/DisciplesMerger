@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DisciplesMerger.Models
 {
     public class Smallgroups
     {
         public string guid { get; set; }
-        public long timestamp { get; set; }
+        public long? timestamp { get; set; }
         public string fk_churches_guid { get; set; }
         public string fk_names_guid { get; set; }
         public string fk_workers_guid { get; set; }
@@ -69,25 +70,25 @@ namespace DisciplesMerger.Models
                 {
                     result.Add(new Smallgroups()
                     {
-                        guid = (string)row["guid"],
-                        timestamp = (long)row["timestamp"],
-                        fk_churches_guid = (string)row["fk_churches_guid"],
-                        fk_names_guid = (string)row["fk_names_guid"],
-                        fk_workers_guid = (string)row["fk_workers_guid"],
-                        name = (string)row["name"],
-                        description = (string)row["description"],
-                        location = (string)row["location"],
-                        street = (string)row["street"],
-                        unit = (string)row["unit"],
-                        city = (string)row["city"],
-                        state = (string)row["state"],
-                        postal = (string)row["postal"],
-                        country = (string)row["country"],
-                        coordinates = (string)row["coordinates"],
-                        day = (string)row["day"],
-                        time = (string)row["time"],
-                        materials = (string)row["materials"],
-                        notes = (string)row["notes"],
+                        guid = row["guid"] == DBNull.Value ? null : (string)row["guid"],
+                        timestamp = row["timestamp"] == DBNull.Value ? null : (long?)row["timestamp"],
+                        fk_churches_guid = row["fk_churches_guid"] == DBNull.Value ? null : (string)row["fk_churches_guid"],
+                        fk_names_guid = row["fk_names_guid"] == DBNull.Value ? null : (string)row["fk_names_guid"],
+                        fk_workers_guid = row["fk_workers_guid"] == DBNull.Value ? null : (string)row["fk_workers_guid"],
+                        name = row["name"] == DBNull.Value ? null : (string)row["name"],
+                        description = row["description"] == DBNull.Value ? null : (string)row["description"],
+                        location = row["location"] == DBNull.Value ? null : (string)row["location"],
+                        street = row["street"] == DBNull.Value ? null : (string)row["street"],
+                        unit = row["unit"] == DBNull.Value ? null : (string)row["unit"],
+                        city = row["city"] == DBNull.Value ? null : (string)row["city"],
+                        state = row["state"] == DBNull.Value ? null : (string)row["state"],
+                        postal = row["postal"] == DBNull.Value ? null : (string)row["postal"],
+                        country = row["country"] == DBNull.Value ? null : (string)row["country"],
+                        coordinates = row["coordinates"] == DBNull.Value ? null : (string)row["coordinates"],
+                        day = row["day"] == DBNull.Value ? null : (string)row["day"],
+                        time = row["time"] == DBNull.Value ? null : (string)row["time"],
+                        materials = row["materials"] == DBNull.Value ? null : (string)row["materials"],
+                        notes = row["notes"] == DBNull.Value ? null : (string)row["notes"],
                     });
                 }
             }

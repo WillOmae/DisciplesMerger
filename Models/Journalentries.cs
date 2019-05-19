@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DisciplesMerger.Models
 {
     public class Journalentries
     {
         public string guid { get; set; }
-        public long timestamp { get; set; }
+        public long? timestamp { get; set; }
         public string fk_churches_guid { get; set; }
         public string fk_names_guid { get; set; }
         public string fk_events_guid { get; set; }
@@ -56,18 +57,18 @@ namespace DisciplesMerger.Models
                 {
                     result.Add(new Journalentries()
                     {
-                        guid = (string)row["guid"],
-                        timestamp = (long)row["timestamp"],
-                        fk_churches_guid = (string)row["fk_churches_guid"],
-                        fk_names_guid = (string)row["fk_names_guid"],
-                        fk_events_guid = (string)row["fk_events_guid"],
-                        fk_smallgroups_guid = (string)row["fk_smallgroups_guid"],
-                        type = (string)row["type"],
-                        title = (string)row["title"],
-                        date = (string)row["date"],
-                        duration = (string)row["duration"],
-                        notes = (string)row["notes"],
-                        completed = (string)row["completed"],
+                        guid = row["guid"] == DBNull.Value ? null : (string)row["guid"],
+                        timestamp = row["timestamp"] == DBNull.Value ? null : (long?)row["timestamp"],
+                        fk_churches_guid = row["fk_churches_guid"] == DBNull.Value ? null : (string)row["fk_churches_guid"],
+                        fk_names_guid = row["fk_names_guid"] == DBNull.Value ? null : (string)row["fk_names_guid"],
+                        fk_events_guid = row["fk_events_guid"] == DBNull.Value ? null : (string)row["fk_events_guid"],
+                        fk_smallgroups_guid = row["fk_smallgroups_guid"] == DBNull.Value ? null : (string)row["fk_smallgroups_guid"],
+                        type = row["type"] == DBNull.Value ? null : (string)row["type"],
+                        title = row["title"] == DBNull.Value ? null : (string)row["title"],
+                        date = row["date"] == DBNull.Value ? null : (string)row["date"],
+                        duration = row["duration"] == DBNull.Value ? null : (string)row["duration"],
+                        notes = row["notes"] == DBNull.Value ? null : (string)row["notes"],
+                        completed = row["completed"] == DBNull.Value ? null : (string)row["completed"],
                     });
                 }
             }

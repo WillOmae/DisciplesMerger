@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DisciplesMerger.Models
 {
     public class Synclogs
     {
-        public long timestamp { get; set; }
+        public double? timestamp { get; set; }
         public string fk_churches_guid { get; set; }
         public string tablename { get; set; }
         public string fk_guid { get; set; }
@@ -41,11 +42,11 @@ namespace DisciplesMerger.Models
                 {
                     result.Add(new Synclogs()
                     {
-                        timestamp = (long)row["timestamp"],
-                        fk_churches_guid = (string)row["fk_churches_guid"],
-                        tablename = (string)row["tablename"],
-                        fk_guid = (string)row["fk_guid"],
-                        action = (string)row["action"],
+                        timestamp = row["timestamp"] == DBNull.Value ? null : (double?)row["timestamp"],
+                        fk_churches_guid = row["fk_churches_guid"] == DBNull.Value ? null : (string)row["fk_churches_guid"],
+                        tablename = row["tablename"] == DBNull.Value ? null : (string)row["tablename"],
+                        fk_guid = row["fk_guid"] == DBNull.Value ? null : (string)row["fk_guid"],
+                        action = row["action"] == DBNull.Value ? null : (string)row["action"],
                     });
                 }
             }

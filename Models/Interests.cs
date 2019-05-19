@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DisciplesMerger.Models
 {
     public class Interests
     {
         public string guid { get; set; }
-        public long timestamp { get; set; }
+        public long? timestamp { get; set; }
         public string fk_churches_guid { get; set; }
         public string fk_names_guid { get; set; }
         public string interest { get; set; }
@@ -46,13 +47,13 @@ namespace DisciplesMerger.Models
                 {
                     result.Add(new Interests()
                     {
-                        guid = (string)row["guid"],
-                        timestamp = (long)row["timestamp"],
-                        fk_churches_guid = (string)row["fk_churches_guid"],
-                        fk_names_guid = (string)row["fk_names_guid"],
-                        interest = (string)row["interest"],
-                        interestother = (string)row["interestother"],
-                        interestcategory = (string)row["interestcategory"],
+                        guid = row["guid"] == DBNull.Value ? null : (string)row["guid"],
+                        timestamp = row["timestamp"] == DBNull.Value ? null : (long?)row["timestamp"],
+                        fk_churches_guid = row["fk_churches_guid"] == DBNull.Value ? null : (string)row["fk_churches_guid"],
+                        fk_names_guid = row["fk_names_guid"] == DBNull.Value ? null : (string)row["fk_names_guid"],
+                        interest = row["interest"] == DBNull.Value ? null : (string)row["interest"],
+                        interestother = row["interestother"] == DBNull.Value ? null : (string)row["interestother"],
+                        interestcategory = row["interestcategory"] == DBNull.Value ? null : (string)row["interestcategory"],
                     });
                 }
             }

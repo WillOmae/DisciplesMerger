@@ -6,7 +6,7 @@ namespace DisciplesMerger.Models
     public class Attendance
     {
         public string guid { get; set; }
-        public long timestamp { get; set; }
+        public long? timestamp { get; set; }
         public string fk_churches_guid { get; set; }
         public string fk_names_guid { get; set; }
         public string fk_events_guid { get; set; }
@@ -44,12 +44,12 @@ namespace DisciplesMerger.Models
                 {
                     result.Add(new Attendance()
                     {
-                        guid = (string)row["guid"],
-                        timestamp = (long)row["timestamp"],
-                        fk_churches_guid = (string)row["fk_churches_guid"],
-                        fk_names_guid = (string)row["fk_names_guid"],
-                        fk_events_guid = (string)row["fk_events_guid"],
-                        fk_sessions_guid = (string)row["fk_sessions_guid"]
+                        guid = row["guid"] == DBNull.Value ? null : (string)row["guid"],
+                        timestamp = row["timestamp"] == DBNull.Value ? null : (long?)row["timestamp"],
+                        fk_churches_guid = row["fk_churches_guid"] == DBNull.Value ? null : (string)row["fk_churches_guid"],
+                        fk_names_guid = row["fk_names_guid"] == DBNull.Value ? null : (string)row["fk_names_guid"],
+                        fk_events_guid = row["fk_events_guid"] == DBNull.Value ? null : (string)row["fk_events_guid"],
+                        fk_sessions_guid = row["fk_sessions_guid"] == DBNull.Value ? null : (string)row["fk_sessions_guid"]
                     });
                 }
             }

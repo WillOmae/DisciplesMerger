@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DisciplesMerger.Models
 {
     public class Groups
     {
         public string guid { get; set; }
-        public long timestamp { get; set; }
+        public long? timestamp { get; set; }
         public string fk_workers_guid { get; set; }
         public string name { get; set; }
         public string type { get; set; }
@@ -44,12 +45,12 @@ namespace DisciplesMerger.Models
                 {
                     result.Add(new Groups()
                     {
-                        guid = (string)row["guid"],
-                        timestamp = (long)row["timestamp"],
-                        fk_workers_guid = (string)row["fk_workers_guid"],
-                        name = (string)row["name"],
-                        type = (string)row["type"],
-                        guids = (string)row["guids"],
+                        guid = row["guid"] == DBNull.Value ? null : (string)row["guid"],
+                        timestamp = row["timestamp"] == DBNull.Value ? null : (long?)row["timestamp"],
+                        fk_workers_guid = row["fk_workers_guid"] == DBNull.Value ? null : (string)row["fk_workers_guid"],
+                        name = row["name"] == DBNull.Value ? null : (string)row["name"],
+                        type = row["type"] == DBNull.Value ? null : (string)row["type"],
+                        guids = row["guids"] == DBNull.Value ? null : (string)row["guids"],
                     });
                 }
             }

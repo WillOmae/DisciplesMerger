@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DisciplesMerger.Models
 {
     public class Filters
     {
         public string guid { get; set; }
-        public long timestamp { get; set; }
+        public long? timestamp { get; set; }
         public string fk_workers_guid { get; set; }
         public string name { get; set; }
         public string andor { get; set; }
@@ -50,15 +51,15 @@ namespace DisciplesMerger.Models
                 {
                     result.Add(new Filters()
                     {
-                        guid = (string)row["guid"],
-                        timestamp = (long)row["timestamp"],
-                        fk_workers_guid = (string)row["fk_workers_guid"],
-                        name = (string)row["name"],
-                        andor = (string)row["andor"],
-                        categories = (string)row["categories"],
-                        columns = (string)row["columns"],
-                        operators = (string)row["operators"],
-                        queries = (string)row["queries"],
+                        guid = row["guid"] == DBNull.Value ? null : (string)row["guid"],
+                        timestamp = row["timestamp"] == DBNull.Value ? null : (long?)row["timestamp"],
+                        fk_workers_guid = row["fk_workers_guid"] == DBNull.Value ? null : (string)row["fk_workers_guid"],
+                        name = row["name"] == DBNull.Value ? null : (string)row["name"],
+                        andor = row["andor"] == DBNull.Value ? null : (string)row["andor"],
+                        categories = row["categories"] == DBNull.Value ? null : (string)row["categories"],
+                        columns = row["columns"] == DBNull.Value ? null : (string)row["columns"],
+                        operators = row["operators"] == DBNull.Value ? null : (string)row["operators"],
+                        queries = row["queries"] == DBNull.Value ? null : (string)row["queries"],
                     });
                 }
             }
