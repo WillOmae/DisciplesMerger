@@ -8,6 +8,12 @@ namespace DisciplesMerger
         static void Main(string[] args)
         {
             var files = GetFiles();
+            if (files.Length == 0)
+            {
+                Console.WriteLine("No files found. Program will exit.");
+                Console.ReadKey();
+                return;
+            }
             switch (GetUserConsent())
             {
                 case true:
