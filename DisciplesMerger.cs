@@ -11,15 +11,14 @@ namespace DisciplesMerger
             private Database proper;
             public DisciplesMerger(string[] filenames)
             {
-                // The first database is the proper database
-                // to which all data is to be written.
-                // The other databases start from index 1...
                 databases = new Database[filenames.Length];
-                proper = databases[0];
-                for (int i = 1; i < filenames.Length; i++)
+                for (int i = 0; i < filenames.Length; i++)
                 {
                     databases[i] = new Database(filenames[i]);
                 }
+                // The first database is the proper database
+                // to which all data is to be written.
+                proper = databases[0];
             }
             public void Merge()
             {
@@ -41,138 +40,248 @@ namespace DisciplesMerger
             }
             private void MergeAttendance()
             {
-                var list = new List<Attendance>();
+                var allData = new List<Attendance>();
+                var dataInProper = new List<Attendance>();
                 for (int i = 0; i < databases.Length; i++)
                 {
-                    list.AddRange(Attendance.Read(this.databases[i]));
+                    var l = Attendance.Read(this.databases[i]);
+                    if (i == 0)
+                    {
+                        dataInProper = l;
+                    }
+                    allData.AddRange(l);
                 }
-                Attendance.Insert(this.proper, new HashSet<Attendance>(list));
+                var toWrite = this.SubtractHashSet(new HashSet<Attendance>(allData), new HashSet<Attendance>(dataInProper));
+                Attendance.Insert(this.proper, toWrite);
             }
             private void MergeContacts()
             {
-                var list = new List<Contacts>();
+                var allData = new List<Contacts>();
+                var dataInProper = new List<Contacts>();
                 for (int i = 0; i < databases.Length; i++)
                 {
-                    list.AddRange(Contacts.Read(this.databases[i]));
+                    var l = Contacts.Read(this.databases[i]);
+                    if (i == 0)
+                    {
+                        dataInProper = l;
+                    }
+                    allData.AddRange(l);
                 }
-                Contacts.Insert(this.proper, new HashSet<Contacts>(list));
+                var toWrite = this.SubtractHashSet(new HashSet<Contacts>(allData), new HashSet<Contacts>(dataInProper));
+                Contacts.Insert(this.proper, toWrite);
             }
             private void MergeDecisions()
             {
-                var list = new List<Decisions>();
+                var allData = new List<Decisions>();
+                var dataInProper = new List<Decisions>();
                 for (int i = 0; i < databases.Length; i++)
                 {
-                    list.AddRange(Decisions.Read(this.databases[i]));
+                    var l = Decisions.Read(this.databases[i]);
+                    if (i == 0)
+                    {
+                        dataInProper = l;
+                    }
+                    allData.AddRange(l);
                 }
-                Decisions.Insert(this.proper, new HashSet<Decisions>(list));
+                var toWrite = this.SubtractHashSet(new HashSet<Decisions>(allData), new HashSet<Decisions>(dataInProper));
+                Decisions.Insert(this.proper, toWrite);
             }
             private void MergeEvents()
             {
-                var list = new List<Events>();
+                var allData = new List<Events>();
+                var dataInProper = new List<Events>();
                 for (int i = 0; i < databases.Length; i++)
                 {
-                    list.AddRange(Events.Read(this.databases[i]));
+                    var l = Events.Read(this.databases[i]);
+                    if (i == 0)
+                    {
+                        dataInProper = l;
+                    }
+                    allData.AddRange(l);
                 }
-                Events.Insert(this.proper, new HashSet<Events>(list));
+                var toWrite = this.SubtractHashSet(new HashSet<Events>(allData), new HashSet<Events>(dataInProper));
+                Events.Insert(this.proper, toWrite);
             }
             private void MergeFilters()
             {
-                var list = new List<Filters>();
+                var allData = new List<Filters>();
+                var dataInProper = new List<Filters>();
                 for (int i = 0; i < databases.Length; i++)
                 {
-                    list.AddRange(Filters.Read(this.databases[i]));
+                    var l = Filters.Read(this.databases[i]);
+                    if (i == 0)
+                    {
+                        dataInProper = l;
+                    }
+                    allData.AddRange(l);
                 }
-                Filters.Insert(this.proper, new HashSet<Filters>(list));
+                var toWrite = this.SubtractHashSet(new HashSet<Filters>(allData), new HashSet<Filters>(dataInProper));
+                Filters.Insert(this.proper, toWrite);
             }
             private void MergeGroups()
             {
-                var list = new List<Groups>();
+                var allData = new List<Groups>();
+                var dataInProper = new List<Groups>();
                 for (int i = 0; i < databases.Length; i++)
                 {
-                    list.AddRange(Groups.Read(this.databases[i]));
+                    var l = Groups.Read(this.databases[i]);
+                    if (i == 0)
+                    {
+                        dataInProper = l;
+                    }
+                    allData.AddRange(l);
                 }
-                Groups.Insert(this.proper, new HashSet<Groups>(list));
+                var toWrite = this.SubtractHashSet(new HashSet<Groups>(allData), new HashSet<Groups>(dataInProper));
+                Groups.Insert(this.proper, toWrite);
             }
             private void MergeInterests()
             {
-                var list = new List<Interests>();
+                var allData = new List<Interests>();
+                var dataInProper = new List<Interests>();
                 for (int i = 0; i < databases.Length; i++)
                 {
-                    list.AddRange(Interests.Read(this.databases[i]));
+                    var l = Interests.Read(this.databases[i]);
+                    if (i == 0)
+                    {
+                        dataInProper = l;
+                    }
+                    allData.AddRange(l);
                 }
-                Interests.Insert(this.proper, new HashSet<Interests>(list));
+                var toWrite = this.SubtractHashSet(new HashSet<Interests>(allData), new HashSet<Interests>(dataInProper));
+                Interests.Insert(this.proper, toWrite);
             }
             private void MergeJournalentries()
             {
-                var list = new List<Journalentries>();
+                var allData = new List<Journalentries>();
+                var dataInProper = new List<Journalentries>();
                 for (int i = 0; i < databases.Length; i++)
                 {
-                    list.AddRange(Journalentries.Read(this.databases[i]));
+                    var l = Journalentries.Read(this.databases[i]);
+                    if (i == 0)
+                    {
+                        dataInProper = l;
+                    }
+                    allData.AddRange(l);
                 }
-                Journalentries.Insert(this.proper, new HashSet<Journalentries>(list));
+                var toWrite = this.SubtractHashSet(new HashSet<Journalentries>(allData), new HashSet<Journalentries>(dataInProper));
+                Journalentries.Insert(this.proper, toWrite);
             }
             private void MergeMetadata()
             {
-                var list = new List<Metadata>();
+                var allData = new List<Metadata>();
+                var dataInProper = new List<Metadata>();
                 for (int i = 0; i < databases.Length; i++)
                 {
-                    list.AddRange(Metadata.Read(this.databases[i]));
+                    var l = Metadata.Read(this.databases[i]);
+                    if (i == 0)
+                    {
+                        dataInProper = l;
+                    }
+                    allData.AddRange(l);
                 }
-                Metadata.Insert(this.proper, new HashSet<Metadata>(list));
+                var toWrite = this.SubtractHashSet(new HashSet<Metadata>(allData), new HashSet<Metadata>(dataInProper));
+                Metadata.Insert(this.proper, toWrite);
             }
             private void MergeNames()
             {
-                var list = new List<Names>();
+                var allData = new List<Names>();
+                var dataInProper = new List<Names>();
                 for (int i = 0; i < databases.Length; i++)
                 {
-                    list.AddRange(Names.Read(this.databases[i]));
+                    var l = Names.Read(this.databases[i]);
+                    if (i == 0)
+                    {
+                        dataInProper = l;
+                    }
+                    allData.AddRange(l);
                 }
-                Names.Insert(this.proper, new HashSet<Names>(list));
+                var toWrite = this.SubtractHashSet(new HashSet<Names>(allData), new HashSet<Names>(dataInProper));
+                Names.Insert(this.proper, toWrite);
             }
             private void MergeRegistrations()
             {
-                var list = new List<Registrations>();
+                var allData = new List<Registrations>();
+                var dataInProper = new List<Registrations>();
                 for (int i = 0; i < databases.Length; i++)
                 {
-                    list.AddRange(Registrations.Read(this.databases[i]));
+                    var l = Registrations.Read(this.databases[i]);
+                    if (i == 0)
+                    {
+                        dataInProper = l;
+                    }
+                    allData.AddRange(l);
                 }
-                Registrations.Insert(this.proper, new HashSet<Registrations>(list));
+                var toWrite = this.SubtractHashSet(new HashSet<Registrations>(allData), new HashSet<Registrations>(dataInProper));
+                Registrations.Insert(this.proper, toWrite);
             }
             private void MergeRelationships()
             {
-                var list = new List<Relationships>();
+                var allData = new List<Relationships>();
+                var dataInProper = new List<Relationships>();
                 for (int i = 0; i < databases.Length; i++)
                 {
-                    list.AddRange(Relationships.Read(this.databases[i]));
+                    var l = Relationships.Read(this.databases[i]);
+                    if (i == 0)
+                    {
+                        dataInProper = l;
+                    }
+                    allData.AddRange(l);
                 }
-                Relationships.Insert(this.proper, new HashSet<Relationships>(list));
+                var toWrite = this.SubtractHashSet(new HashSet<Relationships>(allData), new HashSet<Relationships>(dataInProper));
+                Relationships.Insert(this.proper, toWrite);
             }
             private void MergeSessions()
             {
-                var list = new List<Sessions>();
+                var allData = new List<Sessions>();
+                var dataInProper = new List<Sessions>();
                 for (int i = 0; i < databases.Length; i++)
                 {
-                    list.AddRange(Sessions.Read(this.databases[i]));
+                    var l = Sessions.Read(this.databases[i]);
+                    if (i == 0)
+                    {
+                        dataInProper = l;
+                    }
+                    allData.AddRange(l);
                 }
-                Sessions.Insert(this.proper, new HashSet<Sessions>(list));
+                var toWrite = this.SubtractHashSet(new HashSet<Sessions>(allData), new HashSet<Sessions>(dataInProper));
+                Sessions.Insert(this.proper, toWrite);
             }
             private void MergeSmallgroups()
             {
-                var list = new List<Smallgroups>();
+                var allData = new List<Smallgroups>();
+                var dataInProper = new List<Smallgroups>();
                 for (int i = 0; i < databases.Length; i++)
                 {
-                    list.AddRange(Smallgroups.Read(this.databases[i]));
+                    var l = Smallgroups.Read(this.databases[i]);
+                    if (i == 0)
+                    {
+                        dataInProper = l;
+                    }
+                    allData.AddRange(l);
                 }
-                Smallgroups.Insert(this.proper, new HashSet<Smallgroups>(list));
+                var toWrite = this.SubtractHashSet(new HashSet<Smallgroups>(allData), new HashSet<Smallgroups>(dataInProper));
+                Smallgroups.Insert(this.proper, toWrite);
             }
             private void MergeSynclogs()
             {
-                var list = new List<Synclogs>();
+                var allData = new List<Synclogs>();
+                var dataInProper = new List<Synclogs>();
                 for (int i = 0; i < databases.Length; i++)
                 {
-                    list.AddRange(Synclogs.Read(this.databases[i]));
+                    var l = Synclogs.Read(this.databases[i]);
+                    if (i == 0)
+                    {
+                        dataInProper = l;
+                    }
+                    allData.AddRange(l);
                 }
-                Synclogs.Insert(this.proper, new HashSet<Synclogs>(list));
+                var toWrite = this.SubtractHashSet(new HashSet<Synclogs>(allData), new HashSet<Synclogs>(dataInProper));
+                Synclogs.Insert(this.proper, toWrite);
+            }
+            private HashSet<T> SubtractHashSet<T>(HashSet<T> allData, HashSet<T> dataInProper)
+            {
+                allData.ExceptWith(dataInProper);
+                return allData;
             }
         }
     }
