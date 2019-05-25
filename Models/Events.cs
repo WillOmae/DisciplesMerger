@@ -76,7 +76,7 @@ namespace DisciplesMerger.Models
                         timestamp = row["timestamp"] == DBNull.Value ? null : (long?)row["timestamp"],
                         fk_churches_guid = row["fk_churches_guid"] == DBNull.Value ? null : (string)row["fk_churches_guid"],
                         fk_workers_guid = row["fk_workers_guid"] == DBNull.Value ? null : (string)row["fk_workers_guid"],
-                        fk_workers_guid2 = (string)row["fk_workers_guid2"],
+                        fk_workers_guid2 = row["fk_workers_guid2"] == DBNull.Value ? null : (string)row["fk_workers_guid2"],
                         type = row["type"] == DBNull.Value ? null : (string)row["type"],
                         title = row["title"] == DBNull.Value ? null : (string)row["title"],
                         abbreviation = row["abbreviation"] == DBNull.Value ? null : (string)row["abbreviation"],
