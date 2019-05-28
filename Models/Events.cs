@@ -1,34 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace DisciplesMerger.Models
 {
     public class Events
     {
-        public string guid { get; set; }
-        public long? timestamp { get; set; }
-        public string fk_churches_guid { get; set; }
-        public string fk_workers_guid { get; set; }
-        public string fk_workers_guid2 { get; set; }
-        public string type { get; set; }
-        public string title { get; set; }
-        public string abbreviation { get; set; }
-        public long? color { get; set; }
-        public string description { get; set; }
-        public double? date { get; set; }
-        public string presenter { get; set; }
-        public string venue { get; set; }
-        public string street { get; set; }
-        public string city { get; set; }
-        public string state { get; set; }
-        public string postal { get; set; }
-        public string country { get; set; }
-        public string coordinates { get; set; }
-        public string notes { get; set; }
+        private string guid { get; set; }
+        private long? timestamp { get; set; }
+        private string fk_churches_guid { get; set; }
+        private string fk_workers_guid { get; set; }
+        private string fk_workers_guid2 { get; set; }
+        private string type { get; set; }
+        private string title { get; set; }
+        private string abbreviation { get; set; }
+        private long? color { get; set; }
+        private string description { get; set; }
+        private double? date { get; set; }
+        private string presenter { get; set; }
+        private string venue { get; set; }
+        private string street { get; set; }
+        private string city { get; set; }
+        private string state { get; set; }
+        private string postal { get; set; }
+        private string country { get; set; }
+        private string coordinates { get; set; }
+        private string notes { get; set; }
 
         public static void Insert(Database database, HashSet<Events> set)
         {
-            List<List<object>> parameters = new List<List<object>>();
+            var parameters = new List<List<object>>();
             foreach (var item in set)
             {
                 parameters.Add(new List<object>()
@@ -59,41 +58,38 @@ namespace DisciplesMerger.Models
         }
         public static List<Events> Read(Database database)
         {
-            List<Dictionary<string, object>> reader = database.Read(DB_Statements.READ_EVENTS);
+            var reader = database.Read(DB_Statements.READ_EVENTS);
             return BuildFromReader(reader);
         }
 
         private static List<Events> BuildFromReader(List<Dictionary<string, object>> rows)
         {
             var result = new List<Events>();
-            if (rows != null)
+            if (rows == null) return result;
+            foreach (var row in rows)
             {
-                foreach (Dictionary<string, object> row in rows)
-                {
-                    result.Add(new Events()
-                    {
-                        guid = row["guid"] == DBNull.Value ? null : (string)row["guid"],
-                        timestamp = row["timestamp"] == DBNull.Value ? null : (long?)row["timestamp"],
-                        fk_churches_guid = row["fk_churches_guid"] == DBNull.Value ? null : (string)row["fk_churches_guid"],
-                        fk_workers_guid = row["fk_workers_guid"] == DBNull.Value ? null : (string)row["fk_workers_guid"],
-                        fk_workers_guid2 = row["fk_workers_guid2"] == DBNull.Value ? null : (string)row["fk_workers_guid2"],
-                        type = row["type"] == DBNull.Value ? null : (string)row["type"],
-                        title = row["title"] == DBNull.Value ? null : (string)row["title"],
-                        abbreviation = row["abbreviation"] == DBNull.Value ? null : (string)row["abbreviation"],
-                        color = row["color"] == DBNull.Value ? null : (long?)row["color"],
-                        description = row["description"] == DBNull.Value ? null : (string)row["description"],
-                        date = row["date"] == DBNull.Value ? null : (double?)row["date"],
-                        presenter = row["presenter"] == DBNull.Value ? null : (string)row["presenter"],
-                        venue = row["venue"] == DBNull.Value ? null : (string)row["venue"],
-                        street = row["street"] == DBNull.Value ? null : (string)row["street"],
-                        city = row["city"] == DBNull.Value ? null : (string)row["city"],
-                        state = row["state"] == DBNull.Value ? null : (string)row["state"],
-                        postal = row["postal"] == DBNull.Value ? null : (string)row["postal"],
-                        country = row["country"] == DBNull.Value ? null : (string)row["country"],
-                        coordinates = row["coordinates"] == DBNull.Value ? null : (string)row["coordinates"],
-                        notes = row["notes"] == DBNull.Value ? null : (string)row["notes"],
-                    });
-                }
+                var item = new Events();
+                item.guid = row["guid"] as string;
+                item.timestamp = row["timestamp"] as long?;
+                item.fk_churches_guid = row["fk_churches_guid"] as string;
+                item.fk_workers_guid = row["fk_workers_guid"] as string;
+                item.fk_workers_guid2 = row["fk_workers_guid2"] as string;
+                item.type = row["type"] as string;
+                item.title = row["title"] as string;
+                item.abbreviation = row["abbreviation"] as string;
+                item.color = row["color"] as long?;
+                item.description = row["description"] as string;
+                item.date = row["date"] as double?;
+                item.presenter = row["presenter"] as string;
+                item.venue = row["venue"] as string;
+                item.street = row["street"] as string;
+                item.city = row["city"] as string;
+                item.state = row["state"] as string;
+                item.postal = row["postal"] as string;
+                item.country = row["country"] as string;
+                item.coordinates = row["coordinates"] as string;
+                item.notes = row["notes"] as string;
+                result.Add(item);
             }
             return result;
         }
@@ -102,7 +98,7 @@ namespace DisciplesMerger.Models
         {
             return obj is Events events &&
                    this.guid == events.guid &&
-                   this.timestamp == events.timestamp &&
+                   //this.timestamp == events.timestamp &&
                    this.fk_churches_guid == events.fk_churches_guid &&
                    this.fk_workers_guid == events.fk_workers_guid &&
                    this.fk_workers_guid2 == events.fk_workers_guid2 &&
@@ -111,7 +107,7 @@ namespace DisciplesMerger.Models
                    this.abbreviation == events.abbreviation &&
                    this.color == events.color &&
                    this.description == events.description &&
-                   this.date == events.date &&
+                   //this.date == events.date &&
                    this.presenter == events.presenter &&
                    this.venue == events.venue &&
                    this.street == events.street &&
@@ -127,7 +123,7 @@ namespace DisciplesMerger.Models
         {
             var hashCode = -1941251384;
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.guid);
-            hashCode = hashCode * -1521134295 + this.timestamp.GetHashCode();
+            //hashCode = hashCode * -1521134295 + this.timestamp.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_churches_guid);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_workers_guid);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_workers_guid2);
@@ -136,7 +132,7 @@ namespace DisciplesMerger.Models
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.abbreviation);
             hashCode = hashCode * -1521134295 + this.color.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.description);
-            hashCode = hashCode * -1521134295 + this.date.GetHashCode();
+            //hashCode = hashCode * -1521134295 + this.date.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.presenter);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.venue);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.street);
