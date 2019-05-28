@@ -103,7 +103,7 @@ namespace DisciplesMerger.Models
         {
             return obj is Metadata metadata &&
                    this.guid == metadata.guid &&
-                   this.timestamp == metadata.timestamp &&
+                   //this.timestamp == metadata.timestamp &&
                    this.version == metadata.version &&
                    this.shared == metadata.shared &&
                    this.account_id == metadata.account_id &&
@@ -128,7 +128,7 @@ namespace DisciplesMerger.Models
         {
             var hashCode = -1307005186;
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.guid);
-            hashCode = hashCode * -1521134295 + this.timestamp.GetHashCode();
+            //hashCode = hashCode * -1521134295 + this.timestamp.GetHashCode();
             hashCode = hashCode * -1521134295 + this.version.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.shared);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.account_id);

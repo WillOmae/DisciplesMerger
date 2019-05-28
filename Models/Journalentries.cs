@@ -79,7 +79,7 @@ namespace DisciplesMerger.Models
         {
             return obj is Journalentries journalentries &&
                    this.guid == journalentries.guid &&
-                   this.timestamp == journalentries.timestamp &&
+                   //this.timestamp == journalentries.timestamp &&
                    this.fk_churches_guid == journalentries.fk_churches_guid &&
                    this.fk_names_guid == journalentries.fk_names_guid &&
                    this.fk_events_guid == journalentries.fk_events_guid &&
@@ -96,7 +96,7 @@ namespace DisciplesMerger.Models
         {
             var hashCode = 1776832582;
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.guid);
-            hashCode = hashCode * -1521134295 + this.timestamp.GetHashCode();
+            //hashCode = hashCode * -1521134295 + this.timestamp.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_churches_guid);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_names_guid);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_events_guid);
