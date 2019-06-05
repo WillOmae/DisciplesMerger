@@ -121,6 +121,21 @@ namespace DisciplesMerger.Models
             return BuildFromReader(reader);
         }
 
+        public static void Update(Database database, List<Names> names)
+        {
+            List<List<object>> parameters = new List<List<object>>();
+            foreach (var item in names)
+            {
+                parameters.Add(new List<object>()
+                {
+                    item.firstname,
+                    item.lastname,
+                    item.guid,
+                });
+            }
+            database.Create(DB_Statements.UPDATE_NAMES, parameters);
+        }
+
         private static List<Names> BuildFromReader(List<Dictionary<string, object>> rows)
         {
             var result = new List<Names>();
