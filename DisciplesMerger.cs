@@ -37,6 +37,7 @@ namespace DisciplesMerger
                 MergeSessions();
                 MergeSmallgroups();
                 MergeSynclogs();
+                TrimNames();
             }
             private void MergeAttendance()
             {
@@ -282,6 +283,22 @@ namespace DisciplesMerger
             {
                 allData.ExceptWith(dataInProper);
                 return allData;
+            }
+
+            private void TrimNames()
+            {
+                var names = Names.Read(proper);
+                List<Names> trimmed = new List<Names>(names.Capacity);
+                foreach (var name in names)
+                {
+                    if ((name.firstname.Length > 0 && (name.firstname[0] == ' ' || name.firstname[name.firstname.Length - 1] == ' ')) || (name.lastname.Length > 0 && (name.lastname[0] == ' ' || name.lastname[name.lastname.Length - 1] == ' ')))
+                    {
+                        name.firstname = name.firstname.Trim();
+                        name.lastname = name.lastname.Trim();
+                        trimmed.Add(name);
+                    }
+                }
+                Names.Update(proper, trimmed);
             }
         }
     }
