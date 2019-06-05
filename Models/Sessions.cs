@@ -88,7 +88,7 @@ namespace DisciplesMerger.Models
                    this.fk_churches_guid == sessions.fk_churches_guid &&
                    this.fk_events_guid == sessions.fk_events_guid &&
                    this.night == sessions.night &&
-                   this.date == sessions.date &&
+                   //this.date == sessions.date &&
                    this.title == sessions.title &&
                    this.subject == sessions.subject &&
                    this.venue == sessions.venue &&
@@ -107,7 +107,7 @@ namespace DisciplesMerger.Models
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_churches_guid);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.fk_events_guid);
             hashCode = hashCode * -1521134295 + this.night.GetHashCode();
-            hashCode = hashCode * -1521134295 + this.date.GetHashCode();
+            //hashCode = hashCode * -1521134295 + this.date.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.title);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.subject);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.venue);
